@@ -1,0 +1,17 @@
+---
+- hosts: test
+  tasks:
+    - name: execute multiple commands 
+      copy:
+        src: config.yaml
+        dest: /opt/config.yaml
+      
+    - name: get machine IP 
+      shell: hostname -I | awk '{print $1}'
+      register: ipadresss 
+
+    - name: replacing host address 
+      replace:
+        path: /opt/config.yaml
+        regexp: 'machine-ip'
+        replace: "{{ ipadresss.stdout_lines }}"

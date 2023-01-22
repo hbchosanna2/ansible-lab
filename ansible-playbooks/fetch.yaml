@@ -1,0 +1,7 @@
+---
+- hosts: test
+  tasks:
+    - name: copy file from nodes 
+      fetch: 
+        src: /opt/node.txt
+        dest: /opt

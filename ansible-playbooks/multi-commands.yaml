@@ -1,0 +1,22 @@
+---
+- hosts: test
+  tasks:
+    - name: execute multiple commands 
+      shell: |
+        touch /root/a
+        touch /root/b
+        
+    - name: copy file from nodes 
+      fetch: 
+        src: /opt/node.txt
+        dest: /opt
+    - name: install tool tree in centos hosts 
+      yum:
+        name: tree
+        state: present 
+      when: ansible_distribution == "CentOS"
+    - name: install tool tree in ubuntu hosts 
+      apt:
+        name: tree
+        state: present 
+      when: ansible_distribution == "Ubuntu"

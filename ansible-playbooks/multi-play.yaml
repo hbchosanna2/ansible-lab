@@ -1,0 +1,21 @@
+---
+- hosts: localhost 
+  tasks:
+    - name: download executable 
+      get_url:
+        url: https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+        dest: /root
+        mode: '0755'
+
+- hosts: test
+  tasks:
+
+    - name: installing tree
+      apt:
+        name: tree
+        state: absent 
+
+    - name: copy maven file 
+      copy: 
+        src: /root/apache-maven-3.6.3-bin.tar.gz
+        dest: /opt

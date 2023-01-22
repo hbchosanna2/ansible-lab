@@ -1,0 +1,13 @@
+---
+- hosts: test
+  tasks:
+    - name: create smaple file with hello world data 
+      command: tree
+
+    - name: create smaple file with hello world data 
+      shell: echo "test" > /root/test.txt
+
+    - name: installing tree
+      apt:
+        name: tree
+        state: present 
